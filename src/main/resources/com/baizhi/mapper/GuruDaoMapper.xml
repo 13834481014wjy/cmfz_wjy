@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.GuruDao">
+    <select id="queryByPage" resultType="Guru" >
+        select id,name,headPic,sex,status from cmfz_guru limit #{start},#{rows}
+    </select>
+
+    <select id="queryTotals"  resultType="long">
+        select count(id) from cmfz_guru
+    </select>
+
+    <delete id="delete">
+        delete from cmfz_guru where id=#{id}
+    </delete>
+
+    <insert id="insert" parameterType="Guru">
+        insert into cmfz_guru values (#{id},#{name},#{headPic},#{sex},#{status})
+    </insert>
+
+    <select id="queryOne" resultType="Guru">
+        select id,name,headPic,sex,status  from cmfz_guru
+        where id=#{id}
+    </select>
+
+    <delete id="deleteAll"  parameterType="java.lang.String">
+        delete from cmfz_guru where id in
+        <foreach collection="ids" item="item" open="("  separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+    <!--查所有上师的名字-->
+    <select id="queryAll" resultType="Guru">
+        select id,name,headPic,sex,status from cmfz_guru
+    </select>
+</mapper>

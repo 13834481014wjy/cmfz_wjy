@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CourseDao">
+    <insert id="insert" parameterType="Course">
+        insert into cmfz_course values (#{id},#{title},#{createTime},#{flag})
+    </insert>
+
+    <select id="queryByPage" resultType="Course">
+        select id,title,flag,createTime from cmfz_course limit #{start},#{rows}
+    </select>
+
+    <select id="queryTotals" resultType="long">
+        select count(id) from cmfz_course
+    </select>
+
+    <delete id="delete">
+        delete from cmfz_course where id=#{id}
+    </delete>
+
+
+</mapper>
